@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Suivi des poubelles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Plateforme de suivi des poubelles</h1>
+
+    <!-- Formulaire d'upload -->
+    <form action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+        <label for="file">Choisir une image :</label>
+        <input type="file" name="file" accept="image/png, image/jpeg" required>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <!-- Affichage de l'image uploadée -->
+    {% if image_url %}
+        <h2>Image reçue :</h2>
+        <img src="{{ image_url }}" alt="Image uploadée" style="max-width: 400px; display: block; margin-top: 20px;">
+        
+        <!-- Boutons d'annotation -->
+        <div style="margin-top: 20px;">
+            <button>Pleine</button>
+            <button>Vide</button>
+        </div>
+    {% endif %}
+</body>
+</html>
